@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1022219438646",
+    "project_id": "the-brew-app-project",
+    "storage_bucket": "the-brew-app-project.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1022219438646:android:cef5bae16d81d228abe697",
+        "android_client_info": {
+          "package_name": "com.example.brew_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_hgYMo2LLvQ27IyjjI1S4glPp0iMXE0w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
