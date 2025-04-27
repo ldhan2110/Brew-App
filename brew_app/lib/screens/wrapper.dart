@@ -11,6 +11,7 @@ class Wrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     final user =
         context.watch<UserAuthModel?>(); // 👈 Get the user from the provider
+
     return user == null
         ? AuthenticateScreen()
         : HomeScreen(); // 👈 Check if user is logged in

@@ -110,6 +110,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           loading = false;
                         });
                       }
+
+                      Navigator.of(context).pop();
                     }
                   },
                   child: const Text('Register'),

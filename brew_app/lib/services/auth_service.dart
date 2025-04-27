@@ -1,8 +1,10 @@
+import 'package:brew_app/services/database_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:brew_app/models/user.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final DatabaseService _databaseService = DatabaseService();
 
   UserAuthModel? _userFromFirebaseUser(User? user) {
     return user != null ? UserAuthModel(uid: user.uid) : null;
@@ -41,6 +43,15 @@ class AuthService {
         password: password,
       );
       UserAuthModel? user = _userFromFirebaseUser(result.user);
+
+      // Create a new document for the user with default values
+      await _databaseService.updateUserData(
+        user!.uid,
+        'New Brew Member',
+        '0',
+        100,
+      );
+
       return user;
     } catch (e) {
       print(e.toString());
