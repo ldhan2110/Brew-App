@@ -1,4 +1,3 @@
-import 'package:brew_app/models/user.dart';
 import 'package:brew_app/screens/authenticate/register_screen.dart';
 import 'package:brew_app/services/auth_service.dart';
 import 'package:brew_app/shared/loading.dart';

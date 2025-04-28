@@ -1,5 +1,4 @@
 import 'package:brew_app/models/user.dart';
-import 'package:brew_app/screens/authenticate/signin_screen.dart';
 import 'package:brew_app/services/auth_service.dart';
 import 'package:brew_app/shared/loading.dart';
 import 'package:flutter/material.dart';
