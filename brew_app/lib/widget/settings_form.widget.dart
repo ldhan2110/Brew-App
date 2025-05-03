@@ -14,8 +14,10 @@ class SettingFormWidget extends StatefulWidget {
 class _SettingFormWidgetState extends State<SettingFormWidget> {
   final List<String> sugars = ['0', '1', '2', '3', '4'];
   final _settingFormKey = GlobalKey<FormState>();
-
+  final DatabaseService dbService = DatabaseService();
   final TextEditingController nameController = TextEditingController();
+
+  bool _isInitialized = false;
   String _sugarValue = '0';
   double _strengthValue = 100.0;
 
@@ -29,16 +31,16 @@ class _SettingFormWidgetState extends State<SettingFormWidget> {
   Widget build(BuildContext context) {
     final user = context.watch<UserAuthModel?>();
     return StreamBuilder<UserBrew>(
-      stream: DatabaseService().getUserBrew(user?.uid ?? ''),
+      stream: dbService.getUserBrew(user?.uid ?? ''),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           UserBrew userBrew = snapshot.data!;
-
-          // Set initial values for the form fields
-          nameController.text = userBrew.name;
-          _sugarValue = userBrew.sugars;
-          _strengthValue = userBrew.strength.toDouble();
-
+          if (!_isInitialized) {
+            nameController.text = userBrew.name;
+            _sugarValue = userBrew.sugars;
+            _strengthValue = userBrew.strength.toDouble();
+            _isInitialized = true;
+          }
           return Form(
             key: _settingFormKey,
             child: Column(
@@ -101,7 +103,17 @@ class _SettingFormWidgetState extends State<SettingFormWidget> {
 
                 SizedBox(height: 20.0),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    if (_settingFormKey.currentState!.validate()) {
+                      await dbService.updateUserData(
+                        user?.uid ?? '',
+                        nameController.text,
+                        _sugarValue,
+                        _strengthValue.round(),
+                      );
+                      Navigator.pop(context);
+                    }
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.brown[300],
                     padding: EdgeInsets.symmetric(

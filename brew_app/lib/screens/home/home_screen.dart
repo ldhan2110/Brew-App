@@ -54,7 +54,15 @@ class HomeScreen extends StatelessWidget {
             ),
           ],
         ),
-        body: const BrewListWidget(), // Widget to display the list of brews
+        body: Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/img/coffee_bg.png'),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: BrewListWidget(),
+        ), // Widget to display the list of brews
       ),
     );
   }
