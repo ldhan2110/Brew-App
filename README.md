@@ -1,4 +1,4 @@
-# brew_crew
+# Brew Crew Application
 A sample Flutter project allow user to add their coffee flavor.
 
 ## Getting Started
